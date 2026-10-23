@@ -66,6 +66,7 @@ The circuit topology implemented in LTspice includes the following components an
 
 ## 1. Overview
 This project simulates a bootstrap gate driver circuit and buck converter using LTspice. It analyzes gate-drive voltage, bootstrap capacitor voltage, switching-node voltage, inductor current, and output voltage.
+![Simulation Circuit](LTspice_Simulation_Model.png)
 
 ## 2. Download and Install LTspice
 Download LTspice from the official Analog Devices website:
@@ -81,7 +82,7 @@ https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulat
 2. Open LTspice.
 3. Select **File → Open**.
 4. Browse to the project folder.
-5. Open ![LTspice Simulation Model](LTspice-Simulation-Model.asc).
+5. Open [LTspice Simulation Model](LTspice-Simulation-Model.asc).
 
 ## 4. Configure Simulation Parameters
 
