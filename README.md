@@ -81,7 +81,7 @@ https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulat
 2. Open LTspice.
 3. Select **File → Open**.
 4. Browse to the project folder.
-5. Open `170926-Test-3-Bootstrap-Gate-driver-Circuit - Copy.asc`.
+5. Open `LTspice-Simulation-Model.asc`.
 
 ## 4. Configure Simulation Parameters
 
@@ -197,22 +197,6 @@ This is an ideal estimate. The actual output depends on the circuit topology, sw
 | Incorrect gate-drive voltage | Verify PWM timing, driver connections, and bootstrap components. |
 | Unexpected output voltage | Check duty cycle, MOSFET switching, passive components, and output-node labels. |
 | Simulation fails to converge | Check connections, model compatibility, and transient settings. |
-
-## 11. Project Structure
-
-```text
-Bootstrap-Gate-Driver/
-├── 170926-Test-3-Bootstrap-Gate-driver-Circuit - Copy.asc
-└── README.md
-```
-
-Keep any required third-party model files alongside the project or update their paths in the schematic.
-
-## 12. References
-
-- **LTspice Download:** https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html
-- **LTspice Documentation:** https://www.analog.com/en/resources/technical-documentation/ltspice.html
-
 
 ---
 
