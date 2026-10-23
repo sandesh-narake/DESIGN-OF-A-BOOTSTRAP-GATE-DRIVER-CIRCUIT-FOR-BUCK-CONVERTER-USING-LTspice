@@ -38,7 +38,7 @@ The system consists of two primary paths: the **Power Stage** and the **Control 
 ### 2. Circuit Description
 
 The circuit topology implemented in LTspice includes the following components and functional stages:
-
+![Circuit Diagram](Circuit.png)
 - **Main Power Supply (`Vs`):** Provides the fixed input DC voltage to the buck converter.
 - **Auxiliary Power Supply (`VDD`):** Supplies low-voltage DC power to the gate driver IC and charges the bootstrap network.
 - **Gate Driver IC:** Accepts logic-level inputs (`PWM_HS_IN` at pin `HI` and `PWM_LS_IN` at pin `LI`) and generates gate-drive signals (`HO` for the high-side MOSFET and `LO` for the low-side MOSFET).
