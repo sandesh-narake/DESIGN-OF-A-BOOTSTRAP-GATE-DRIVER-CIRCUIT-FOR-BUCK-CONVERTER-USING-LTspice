@@ -29,7 +29,7 @@ This project focuses on the **design, simulation, and performance analysis of a 
 
 ### 1. Block Diagram Overview
 
-![Block Diagram Overview](Block_Diagram_Overview.png)
+![Block Diagram Overview](Block_Diagram_Overview.svg)
 
 **Figure 1:** Block diagram of the Power Stage and Control & Driving Stage.
 
