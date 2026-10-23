@@ -61,20 +61,158 @@ The circuit topology implemented in LTspice includes the following components an
 
 ---
 
-## 🚀 Getting Started
 
-1. **Install LTspice:** Download and install the latest version from the [official LTspice website](https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html).
-2. **Open the Simulation File:** Launch LTspice and open the project schematic file (`.asc`).
-3. **Configure Parameters:** Set the input voltage (`Vs`), auxiliary supply (`VDD`), PWM switching frequency, and duty cycle (`D`) according to the desired output voltage. For an ideal buck converter, the output voltage is approximately:
+# LTspice Simulation Guide: Bootstrap Gate Driver Circuit
 
-   `Vo = D × Vs`
+## 1. Overview
+This project simulates a bootstrap gate driver circuit and buck converter using LTspice. It analyzes gate-drive voltage, bootstrap capacitor voltage, switching-node voltage, inductor current, and output voltage.
 
-4. **Run Simulation:** Click **Run** to execute the transient analysis and observe the following waveforms:
-   - High-side gate-to-source voltage: `V(HO) - V(HS)`
-   - Bootstrap capacitor voltage: `V(HB) - V(HS)`
-   - Switching node voltage: `V(HS)`
-   - Inductor current: `IL`
-   - Output voltage: `Vo`
+## 2. Download and Install LTspice
+Download LTspice from the official Analog Devices website:
+
+https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html
+
+1. Download the Windows installer.
+2. Run the installer and complete the installation.
+3. Launch LTspice.
+
+## 3. Open the Simulation File
+1. Save the provided `.asc` schematic file to your computer.
+2. Open LTspice.
+3. Select **File → Open**.
+4. Browse to the project folder.
+5. Open `170926-Test-3-Bootstrap-Gate-driver-Circuit - Copy.asc`.
+
+## 4. Configure Simulation Parameters
+
+| Parameter | LTspice Name | Value |
+|---|---|---:|
+| Input DC voltage | Vs | 120 V |
+| Gate-driver supply | Vcc | 12 V |
+| PWM amplitude | Vpulse_1, Vpulse_2 | 0–5 V |
+| Switching frequency | PWM sources | 10 kHz |
+| PWM period | PWM sources | 100 µs |
+| Pulse width | PWM sources | 49 µs |
+| Pulse delay 1 | Vpulse_1 | 1 µs |
+| Pulse delay 2 | Vpulse_2 | 51 µs |
+| Rise time | PWM sources | 75 ns |
+| Fall time | PWM sources | 45 ns |
+| Bootstrap capacitor | Cboot | 1 µF |
+| Bootstrap resistor | Rboot | 1 Ω |
+| Bootstrap diode | Dboot | 1N5819 |
+| High-side MOSFET | S1 | IRF530 |
+| Low-side MOSFET | S2 | IRF530 |
+| Gate resistors | R1, R2 | 15 Ω |
+| Inductor | L | 8.33 mH |
+| Output capacitor | C | 5 µF |
+| Output load | R_load | 50 Ω |
+| Input capacitor | Cin | 10 µF |
+| Simulation stop time | `.tran` | 10 ms |
+| Maximum timestep | `.tran` | 100 ns (recommended) |
+
+**Note:** Verify the component values and model names against the actual schematic before simulation.
+
+## 5. Verify PWM Pulse Sources
+
+The pulse-source expressions are:
+
+```spice
+PULSE(0 5 1u 75n 45n 49u 100u)
+PULSE(0 5 51u 75n 45n 49u 100u)
+```
+
+The switching frequency is calculated as:
+
+\[
+f_s = \frac{1}{T_s}
+\]
+
+\[
+f_s = \frac{1}{100\,\mu s} = 10\,kHz
+\]
+
+## 6. Configure Transient Analysis
+
+Set the transient-analysis command to:
+
+```spice
+.tran 0 10m 0 100n
+```
+
+1. Locate the transient directive in the schematic.
+2. Right-click it.
+3. Set the stop time to `10m`.
+4. Set the maximum timestep to `100n`.
+5. Apply the changes.
+
+## 7. Run the Simulation
+
+1. Click the **Run** button.
+2. Wait for the transient analysis to finish.
+3. Return to the schematic window.
+4. Click circuit nodes to plot voltage waveforms.
+5. Click the inductor to plot its current.
+6. Use **Plot Settings → Add Trace** to enter voltage-difference expressions.
+
+## 8. Observe and Analyze Waveforms
+
+| Waveform | LTspice Expression | Purpose |
+|---|---|---|
+| High-side gate-to-source voltage | `V(HO)-V(HS)` | Evaluates high-side MOSFET gate drive |
+| Bootstrap capacitor voltage | `V(HB)-V(HS)` | Checks bootstrap supply voltage |
+| Switching-node voltage | `V(HS)` | Observes switching transitions |
+| Inductor current | `I(L)` | Evaluates current ripple |
+| Output voltage | `V(out)` | Checks filtered DC output |
+
+Replace `HO`, `HS`, `HB`, and `out` with the actual node labels in your schematic if they differ.
+
+## 9. Expected Buck Converter Output
+
+For an ideal buck converter operating in continuous conduction mode:
+
+\[
+V_o \approx D V_s
+\]
+
+Where:
+- \(V_o\) = output voltage
+- \(D\) = effective duty cycle
+- \(V_s\) = input voltage
+
+For example, at a 50% duty cycle and a 120 V input:
+
+\[
+V_o \approx 0.5 \times 120 = 60\,V
+\]
+
+This is an ideal estimate. The actual output depends on the circuit topology, switching behavior, component models, and conduction losses.
+
+## 10. Troubleshooting
+
+| Problem | Possible Solution |
+|---|---|
+| Missing model or unknown subcircuit | Verify model files and symbol references. |
+| No waveform displayed | Confirm that the simulation completed and select a circuit node. |
+| Coarse switching waveform | Reduce the maximum timestep. |
+| Incorrect gate-drive voltage | Verify PWM timing, driver connections, and bootstrap components. |
+| Unexpected output voltage | Check duty cycle, MOSFET switching, passive components, and output-node labels. |
+| Simulation fails to converge | Check connections, model compatibility, and transient settings. |
+
+## 11. Project Structure
+
+```text
+Bootstrap-Gate-Driver/
+├── 170926-Test-3-Bootstrap-Gate-driver-Circuit - Copy.asc
+└── README.md
+```
+
+Keep any required third-party model files alongside the project or update their paths in the schematic.
+
+## 12. References
+
+- **LTspice Download:** https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html
+- **LTspice Documentation:** https://www.analog.com/en/resources/technical-documentation/ltspice.html
+
 
 ---
 
