@@ -27,21 +27,14 @@ This project focuses on the **design, simulation, and performance analysis of a 
 ## 🏗️ System Architecture
 
 ### 1. Block Diagram Overview
-The system consists of two primary paths: the **Power Stage** and the **Control & Driving Stage**.
 
-```text
-+---------------+   Fixed DC   +--------------------+  Variable DC  +-------------------+
-|   DC Source   | -----------> |  DC-DC Converter   | ------------> |       Load        |
-|     (Vs)      |              |       (Buck)       |               | (R, RL, RE, etc.) |
-+---------------+              +--------------------+               +-------------------+
-                                         ^
-                                         | Level Shifted Pulse
-                                         |
-+---------------+  Comp. PWM   +--------------------+      Vdc      +-------------------+
-|  PWM Signal   | -----------> |   Bootstrap Gate   | <------------ |  Auxiliary Power  |
-|   Generator   |   Signals    |   Driver Circuit   |               |    Source (V)     |
-+---------------+              +--------------------+               +-------------------+
-```
+![Block Diagram Overview](Block_Diagram_Overview.png)
+
+**Figure 1:** Block Diagram of the Power Stage and Control & Driving Stage.
+
+The system consists of two primary paths: the **Power Stage** and the **Control & Driving Stage**. The Power Stage handles the main power flow, while the Control & Driving Stage generates the control signals required to operate the power components.
+
+
 
 ### 2. Circuit Description
 The circuit topology implemented in LTspice includes:
@@ -79,31 +72,7 @@ The circuit topology implemented in LTspice includes:
    * Switching node voltage ($V_{HS}$)
    * Inductor current ($I_L$) and Output voltage ($V_o$)
 
----
 
-## 📅 Project Timeline (Gantt Chart)
-
-| Task | W1 | W2 | W3 | W4 | W5 | W6 | W7 | W8 | W9 | W10 |
-| :--- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| **Project Title Finalization** | ✔️ | ✔️ | | | | | | | | |
-| **Literature Review** | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | |
-| **Circuit Design & Simulation Model Implementation** | | | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | | |
-| **Testing & Performance Analysis** | | | | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | |
-| **Final Documentation** | | | | | | | | | ✔️ | ✔️ |
-
----
-
-## 👥 Team & Work Distribution
-
-**Project Guide:** Dr. Srinivas Nagaballi
-
-| Roll No. / ID | Member Name | Assigned Responsibilities |
-| :--- | :--- | :--- |
-| **2023BEL025** | Tejas J. Patekar | Literature Review, Simulation, Testing & Performance Analysis |
-| **2024BEL503** | Shubham K. Tayde | Literature Review, Simulation, Testing & Performance Analysis |
-| **2024BEL505** | Sakshi P. Kashte | Circuit Design, Simulation, Testing & Performance Analysis |
-| **2024BEL506** | Sandesh R. Narake | Simulation, Testing & Performance Analysis |
-| **2024BEL509** | Aishwarya A. Dhande | Circuit Design, Simulation, Testing & Performance Analysis |
 
 ---
 
