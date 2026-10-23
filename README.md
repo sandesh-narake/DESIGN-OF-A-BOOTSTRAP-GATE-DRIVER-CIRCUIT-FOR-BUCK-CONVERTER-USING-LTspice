@@ -81,7 +81,7 @@ https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulat
 2. Open LTspice.
 3. Select **File → Open**.
 4. Browse to the project folder.
-5. Open `LTspice-Simulation-Model.asc`.
+5. Open ![LTspice Simulation Model](LTspice-Simulation-Model.asc).
 
 ## 4. Configure Simulation Parameters
 
